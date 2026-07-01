@@ -1,0 +1,46 @@
+graph TB
+
+subgraph Client
+    C[Customer]
+    A[Admin]
+end
+
+subgraph Frontend
+    R[React Web Application]
+end
+
+subgraph Backend
+    API[Node.js API Server]
+end
+
+subgraph Business
+    L[Authentication]
+    P[Product Service]
+    CA[Cart Service]
+    O[Order Service]
+    PAY[Payment Service]
+    U[Profile Service]
+end
+
+subgraph Storage
+    DB[(LocalStorage)]
+end
+
+C --> R
+A --> R
+
+R --> API
+
+API --> L
+API --> P
+API --> CA
+API --> O
+API --> PAY
+API --> U
+
+L --> DB
+P --> DB
+CA --> DB
+O --> DB
+PAY --> DB
+U --> DB

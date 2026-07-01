@@ -1,12 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>PrimePC</title>
+    <title>PrimePC Project Overview</title>
+    <style>
+        :root {
+            --bg-1: #f8fafc;
+            --bg-2: #e0f2fe;
+            --bg-3: #ecfccb;
+            --ink: #0f172a;
+            --muted: #334155;
+            --line: #cbd5e1;
+            --card: rgba(255, 255, 255, 0.85);
+        }
+
+        body {
+            font-family: "Noto Sans Thai", sans-serif;
+            color: var(--ink);
+        }
+
+        .display-font {
+            font-family: "Chakra Petch", sans-serif;
+        }
+
+        .markdown-content h1,
+        .markdown-content h2,
+        .markdown-content h3,
+        .markdown-content h4 {
+            margin-top: 1.2rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+            color: #0c4a6e;
+        }
+
+        .markdown-content h1 {
+            margin-top: 0;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            border-left: 5px solid #0891b2;
+            padding-left: 0.6rem;
+        }
+
+        .markdown-content h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .markdown-content p {
+            margin: 0.65rem 0;
+            color: var(--muted);
+            line-height: 1.85;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            margin: 0.5rem 0 1rem 1.35rem;
+            color: var(--muted);
+        }
+
+        .markdown-content li {
+            margin: 0.4rem 0;
+            line-height: 1.75;
+            padding-left: 0.2rem;
+        }
+
+        .markdown-content strong {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 0.75rem;
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+        }
+
+        .markdown-content th,
+        .markdown-content td {
+            border: 1px solid var(--line);
+            padding: 0.75rem;
+            text-align: left;
+            vertical-align: top;
+            color: var(--muted);
+        }
+
+        .markdown-content th {
+            color: #0f172a;
+            background: #ecfeff;
+            font-weight: 700;
+        }
+    </style>
 </head>
-<body>
-    
+
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-lime-50">
+    <div class="pointer-events-none fixed inset-0 overflow-hidden">
+        <div class="absolute -top-24 -left-20 h-72 w-72 rounded-full bg-cyan-300/30 blur-3xl"></div>
+        <div class="absolute top-1/3 -right-20 h-80 w-80 rounded-full bg-lime-300/30 blur-3xl"></div>
+        <div class="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-sky-300/20 blur-3xl"></div>
+    </div>
+
+    <main class="relative mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
+        <section
+            class="overflow-hidden rounded-3xl border border-cyan-100/70 bg-white/70 p-6 shadow-xl shadow-cyan-900/10 backdrop-blur-md sm:p-8 lg:p-10">
+            <article id="markdown-output" class="markdown-content"></article>
+        </section>
+    </main>
+
+    <script>
+        const markdownData = `# PrimePC: ร้านค้าออนไลน์สำหรับจัดจำหน่ายอุปกรณ์คอมพิวเตอร์
+
+
+## 1) ข้อมูลกลุ่ม (Group information)
+- **ชื่อกลุ่ม:** ดรีมหลับ
+- **จำนวนสมาชิก** 5/5
+- **1.67140410 นาย ศรัณยู แซ่ตั้ง  Frontend & Backend**
+- **2.67124614 นาย วรพล เเสงพานิช Frontend & Backend**
+- **3.67137113 นาย อภิชยุตม์ โรจน์สุกิจ  Frontend & Backend**
+- **4.67157971 นาย ธเนศวร ศรีทับทิม  Frontend & Backend**
+- **5.67177222 นาย ธีระวัฒน์ ซู่  Frontend & Backend**
+
+
+
+## 2) ชื่อโครงงาน (Project Title)
+- **ชื่อโครงงาน (ภาษาไทย):** ร้านอุปกรณ์คอมพิวเตอร์ (PrimePC)
+- **ชื่อโครงงาน (ภาษาอังกฤษ):** PrimePC
+
+## 3) หลักการและเหตุผล (Rationale)
+ในปัจจุบันเทคโนโลยีคอมพิวเตอร์มีการพัฒนาอย่างรวดเร็ว และมีความต้องการใช้งานสูงขึ้นทั้งในกลุ่มคนทำงาน เกมเมอร์ และนักเรียนนักศึกษา แต่อย่างไรก็ตาม ผู้ซื้อบางส่วนยังประสบปัญหาในการค้นหาอุปกรณ์ที่เข้ากันได้ หรือไม่มีแพลตฟอร์มที่รวมอุปกรณ์คอมพิวเตอร์ไว้อย่างครบครันและน่าเชื่อถือ ทางคณะผู้จัดทำจึงได้พัฒนาแพลตฟอร์ม **"PrimePC"** ขึ้นมา เพื่อเป็นร้านค้าออนไลน์ที่ช่วยให้ออกแบบ จัดหา และสั่งซื้ออุปกรณ์คอมพิวเตอร์ได้อย่างสะดวก รวดเร็ว และตอบโจทย์ความต้องการของผู้ใช้งานในยุคดิจิทัล
+
+## 4) วัตถุประสงค์ของโครงงาน
+1. พัฒนาแพลตฟอร์ม e-Commerce สำหรับซื้อขายอุปกรณ์คอมพิวเตอร์ที่มีประสิทธิภาพและใช้งานง่าย
+2. เพื่ออำนวยความสะดวกให้ผู้ใช้งานสามารถค้นหา สั่งซื้อ และเลือกดูข้อมูลสเปกอุปกรณ์คอมพิวเตอร์ได้ครบจบในที่เดียว
+3. เพื่อประยุกต์ใช้ความรู้ด้านดิจิทัลแพลตฟอร์มและการพัฒนาซอฟต์แวร์ตามกระบวนการ SDLC
+
+## 5) ขอบเขตของระบบ (System Scope)
+### ลูกค้า (Customer)
+- สมัครสมาชิก และเข้าสู่ระบบ (Login)
+- ค้นหาสินค้า คัดกรองประเภทอุปกรณ์ (เช่น CPU, GPU, RAM) และดูรายละเอียดสินค้า
+- จัดการระบบตะกร้าสินค้า (เพิ่ม/ลด/ลบ) และทำรายการสั่งซื้อพร้อมแนบหลักฐานชำระเงิน
+- จัดการข้อมูลบัญชีผู้ใช้ เช่น แก้ไขข้อมูลส่วนตัว เปลี่ยนรหัสผ่าน และจัดการที่อยู่สำหรับการจัดส่ง
+- ติดตามสถานะคำสั่งซื้อ (เช่น รอชำระเงิน, กำลังจัดส่ง, จัดส่งสำเร็จ) และดูประวัติการสั่งซื้อ
+
+## 6) แนวทางการพัฒนาตาม SDLC (Brief Description)
+| ขั้นตอน (Phase) | รายละเอียดโดยย่อ (Brief Description) |
+|---|---|
+| 1. Planning | ประชุมวางแผนแบ่งงาน กำหนดหัวข้อโครงงาน "PrimePC" และจัดทำเอกสารขออนุมัติโครงงาน |
+| 2. Analysis | รวบรวมความต้องการของระบบ (Requirements) และกำหนดขอบเขตหน้าที่ของ User แต่ละกลุ่ม |
+| 3. Design | ออกแบบโครงสร้างฐานข้อมูล (ER-Diagram) และออกแบบหน้าจอผู้ใช้งาน (Wireframe/UI) |
+| 4. Development | เขียนโค้ดพัฒนาโปรแกรมส่วน Frontend และ Backend พร้อมเชื่อมต่อฐานข้อมูลตามที่ออกแบบไว้ |
+| 5. Testing | ทำการทดสอบระบบ (Manual Testing) ตามฟังก์ชันการทำงานเพื่อหาข้อผิดพลาด (Bug) และแก้ไข |
+| 6. Deployment | นำระบบขึ้นระบบจำลองหรือแพลตฟอร์มเพื่อให้ผู้สอนและผู้เกี่ยวข้องสามารถเข้าใช้งานได้ |
+| 7. Maintenance | ตรวจทานระบบหลังจากนำไปติดตั้ง ตรวจสอบ Feedback และสรุปผลโครงงาน |
+
+## 7) เครื่องมือและเทคโนโลยีที่ใช้
+- **Frontend:** React
+- **Backend:** Node.js
+- **Database:** Localstorage
+
+## 8) ประเภทการทดสอบ  (Test Types)
+- User Acceptance Testing (UAT)
+
+- **เครื่องมือที่ใช้ (Tools)**
+
+
+- Manual Testing
+
+
+
+## 9) ผลลัพธ์ที่คาดว่าจะได้รับ
+1. ได้แพลตฟอร์มร้านค้าออนไลน์ PrimePC ที่สามารถใช้งานซื้อขายอุปกรณ์คอมพิวเตอร์ได้จริงตามขอบเขตที่กำหนด
+2. ผู้ใช้งานได้รับความสะดวกสบายในการเลือกซื้อและเข้าถึงข้อมูลอุปกรณ์คอมพิวเตอร์
+3. ผู้จัดทำเข้าใจกระบวนการพัฒนาซอฟต์แวร์อย่างเป็นระบบตามหลัก SDLC และสามารถทำงานร่วมกันเป็นทีมได้อย่างมีประสิทธิภาพ
+
+## 10) แผนการดำเนินงาน 4 สัปดาห์ (Work Plan)
+| สัปดาห์ | รายละเอียดโดยย่อ |
+|---|---|
+| สัปดาห์ที่ 1 (วิเคราะห์และออกแบบระบบ) | ประชุมเก็บความต้องการ ออกแบบ Use Case, Database และสร้าง UI Prototype บน Figma |
+| สัปดาห์ที่ 2 (พัฒนา Frontend) | พัฒนาหน้าจอ Interface ทั้งหมด (หน้าแรก, หน้ารายละเอียดสินค้า, ตะกร้าสินค้า, หน้า Admin) |
+| สัปดาห์ที่ 3 (พัฒนา Backend และฐานข้อมูล) | พัฒนาระบบ API, ระบบ Login, จัดการฐานข้อมูลสินค้า และเชื่อมต่อหน้าบ้านเข้ากับหลังบ้าน |
+| สัปดาห์ที่ 4 (ทดสอบระบบและนำเสนอผลงาน) | ทำการทดสอบระบบแบบ Manual เพื่อตรวจเช็คความถูกต้อง แก้ไขจุดบกพร่อง |`;
+
+        document.getElementById("markdown-output").innerHTML = marked.parse(markdownData);
+    </script>
 </body>
+
 </html>
