@@ -10,36 +10,97 @@
         href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>PrimePC Project Overview</title>
     <style>
         :root {
-            --bg-1: #f8fafc;
-            --bg-2: #e0f2fe;
-            --bg-3: #ecfccb;
+            --paper: #ffffff;
+            --paper-soft: #f8fafc;
             --ink: #0f172a;
-            --muted: #334155;
-            --line: #cbd5e1;
-            --card: rgba(255, 255, 255, 0.85);
+            --muted: #475569;
+            --line: #dbe3ee;
+            --accent: #0f766e;
+            --accent-soft: #ccfbf1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: "Noto Sans Thai", sans-serif;
             color: var(--ink);
+            background:
+                linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
         }
 
         .display-font {
             font-family: "Chakra Petch", sans-serif;
         }
 
+        .document-frame {
+            position: relative;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        .document-frame::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(to bottom, rgba(15, 118, 110, 0.03), transparent 140px);
+        }
+
+        .document-header {
+            position: relative;
+            border-bottom: 2px solid var(--line);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .document-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.875rem;
+            color: var(--accent);
+            background: var(--accent-soft);
+            letter-spacing: 0.02em;
+        }
+
+        .document-title {
+            margin: 0.85rem 0 0.35rem;
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            line-height: 1.15;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .document-subtitle {
+            margin: 0;
+            max-width: 70ch;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
         .markdown-content h1,
         .markdown-content h2,
         .markdown-content h3,
         .markdown-content h4 {
-            margin-top: 1.2rem;
-            margin-bottom: 0.75rem;
+            margin-top: 1.35rem;
+            margin-bottom: 0.7rem;
             line-height: 1.25;
-            color: #0c4a6e;
+            color: #0f172a;
         }
 
         .markdown-content h1 {
@@ -51,8 +112,8 @@
         .markdown-content h2 {
             font-size: 1.4rem;
             font-weight: 700;
-            border-left: 5px solid #0891b2;
-            padding-left: 0.6rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 0.75rem;
         }
 
         .markdown-content h3 {
@@ -61,14 +122,14 @@
         }
 
         .markdown-content p {
-            margin: 0.65rem 0;
+            margin: 0.7rem 0;
             color: var(--muted);
-            line-height: 1.85;
+            line-height: 1.9;
         }
 
         .markdown-content ul,
         .markdown-content ol {
-            margin: 0.5rem 0 1rem 1.35rem;
+            margin: 0.5rem 0 1.1rem 1.35rem;
             color: var(--muted);
         }
 
@@ -79,7 +140,7 @@
         }
 
         .markdown-content strong {
-            color: #1e293b;
+            color: #0f172a;
             font-weight: 700;
         }
 
@@ -89,9 +150,9 @@
             margin: 1rem 0;
             overflow: hidden;
             border: 1px solid var(--line);
-            border-radius: 0.75rem;
+            border-radius: 0.9rem;
             background: #ffffff;
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
         }
 
         .markdown-content th,
@@ -105,38 +166,73 @@
 
         .markdown-content th {
             color: #0f172a;
-            background: #ecfeff;
+            background: #f1f5f9;
             font-weight: 700;
+        }
+
+        .diagram-shell {
+            margin-top: 2rem;
+            padding: 1.15rem;
+            border: 1px solid var(--line);
+            border-radius: 1rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+            overflow-x: auto;
+        }
+
+        .diagram-shell h2 {
+            margin: 0 0 0.75rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+
+        .document-footer {
+            margin-top: 1.5rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.92rem;
         }
     </style>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-lime-50">
-    <div class="pointer-events-none fixed inset-0 overflow-hidden">
-        <div class="absolute -top-24 -left-20 h-72 w-72 rounded-full bg-cyan-300/30 blur-3xl"></div>
-        <div class="absolute top-1/3 -right-20 h-80 w-80 rounded-full bg-lime-300/30 blur-3xl"></div>
-        <div class="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-sky-300/20 blur-3xl"></div>
-    </div>
+<body class="min-h-screen">
+    <main class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
+        <section class="document-frame overflow-hidden rounded-[1.75rem] p-6 sm:p-8 lg:p-10">
+           
 
-    <main class="relative mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
-        <section
-            class="overflow-hidden rounded-3xl border border-cyan-100/70 bg-white/70 p-6 shadow-xl shadow-cyan-900/10 backdrop-blur-md sm:p-8 lg:p-10">
             <article id="markdown-output" class="markdown-content"></article>
+            <section class="diagram-shell">
+                <h2>Diagram</h2>
+                <div id="diagram-output" class="mermaid"></div>
+            </section>
+
+            <footer class="document-footer">
+                PrimePC Project Document
+            </footer>
         </section>
     </main>
 
     <script>
+        mermaid.initialize({ startOnLoad: false });
+
         const markdownData = `# PrimePC: ร้านค้าออนไลน์สำหรับจัดจำหน่ายอุปกรณ์คอมพิวเตอร์
 
 
 ## 1) ข้อมูลกลุ่ม (Group information)
 - **ชื่อกลุ่ม:** ดรีมหลับ
 - **จำนวนสมาชิก** 5/5
-- **1.67140410 นาย ศรัณยู แซ่ตั้ง  Frontend & Backend**
-- **2.67124614 นาย วรพล เเสงพานิช Frontend & Backend**
-- **3.67137113 นาย อภิชยุตม์ โรจน์สุกิจ  Frontend & Backend**
-- **4.67157971 นาย ธเนศวร ศรีทับทิม  Frontend & Backend**
-- **5.67177222 นาย ธีระวัฒน์ ซู่  Frontend & Backend**
+- **1.67140410 นาย ศรัณยู แซ่ตั้ง  Project Mannager / Testing**
+- **2.67124614 นาย วรพล เเสงพานิช Frontend**
+- **3.67137113 นาย อภิชยุตม์ โรจน์สุกิจ  Frontend*
+- **4.67157971 นาย ธเนศวร ศรีทับทิม  Backend **
+- **5.67177222 นาย ธีระวัฒน์ ซู่  Backend / Testing**
 
 
 
@@ -159,6 +255,40 @@
 - จัดการระบบตะกร้าสินค้า (เพิ่ม/ลด/ลบ) และทำรายการสั่งซื้อพร้อมแนบหลักฐานชำระเงิน
 - จัดการข้อมูลบัญชีผู้ใช้ เช่น แก้ไขข้อมูลส่วนตัว เปลี่ยนรหัสผ่าน และจัดการที่อยู่สำหรับการจัดส่ง
 - ติดตามสถานะคำสั่งซื้อ (เช่น รอชำระเงิน, กำลังจัดส่ง, จัดส่งสำเร็จ) และดูประวัติการสั่งซื้อ
+
+
+### พนักงาน (Staff)
+- จัดการข้อมูลและสถานะคลังสินค้า (Product & Stock Management): พนักงานสามารถเพิ่ม ลบ แก้ไข ข้อมูลสเปกและราคาอุปกรณ์คอมพิวเตอร์ (เช่น CPU, GPU, RAM) รวมถึงอัปเดตจำนวนสินค้าในระบบ LocalStorage ได้
+- รวจสอบและเปลี่ยนสถานะคำสั่งซื้อ (Order Fulfillment): พนักงานสามารถดูรายการสั่งซื้อของลูกค้า ตรวจสอบหลักฐานการชำระเงินที่แนบมา และเปลี่ยนสถานะคำสั่งซื้อ (เช่น จาก "รอชำระเงิน" เป็น "กำลังจัดส่ง" หรือ "จัดส่งสำเร็จ")
+
+- ระบบจัดการสมาชิกและสิทธิ์การใช้งาน (User Management): พนักงานสามารถค้นหา ดูรายชื่อบัญชีผู้ใช้ของลูกค้า และตรวจสอบประวัติการซื้อของสมาชิกแต่ละคนเพื่อใช้อ้างอิงในการให้บริการ
+
+- ระบบแดชบอร์ดสรุปยอดขายเบื้องต้น (Sales Overview Dashboard): พนักงานสามารถดูยอดรวมการสั่งซื้อ จำนวนสินค้าที่ขายได้ และรายการสินค้าที่ใกล้หมดจากคลัง เพื่อช่วยในการวางแผนเติมสินค้า
+
+- ระบบยืนยันและจัดการคำร้องเรียน/การเคลม (Ticket & Inquiry Handling): พนักงานสามารถเรียกดูข้อความการติดต่อหรือคำร้องเรียนจากหน้าบ้าน และเปลี่ยนสถานะการดำเนินงานเพื่อแจ้งกลับไปยังฝั่งลูกค้า
+
+### ผู้ดูแลระบบ (Administrator)
+
+- ระบบจัดการสิทธิ์และบัญชีผู้ใช้งาน (User & Role Management)
+
+- สามารถสร้าง แก้ไข ระงับการใช้งาน หรือลบบัญชีผู้ใช้ของทั้งลูกค้าและพนักงานหน้าร้าน รวมถึงกำหนด/เปลี่ยนสิทธิ์สิทธิ์การเข้าถึงระบบ (Roles) ให้พนักงานแต่ละคนได้
+
+- ระบบตั้งค่าโครงสร้างและหมวดหมู่สินค้า (System & Category Configuration)
+
+- สามารถจัดการโครงสร้างหลักของร้าน เช่น เพิ่ม/ลด หมวดหมู่ของอุปกรณ์คอมพิวเตอร์ (เช่น เพิ่มหมวดหมู่ใหม่อย่าง "Custom Water Cooling") และตั้งค่าตัวเลือกสเปก (Specification Attributes) สำหรับใช้ในการกรองสินค้า
+
+- ระบบจัดการโปรโมชั่นและโค้ดส่วนลด (Marketing & Promotion Management)
+
+- สามารถสร้าง ค้นหา แก้ไข หรือลบแคมเปญโปรโมชั่น, คูปองส่วนลด (Coupon Codes) รวมถึงกำหนดเงื่อนไขการใช้งาน (เช่น วันหมดอายุ หรือยอดซื้อขั้นต่ำ) เพื่อให้ระบบคำนวณส่วนลดโดยอัตโนมัติ
+
+- ระบบรายงานสถิติและวิเคราะห์ยอดขายขั้นสูง (Advanced Reports & Analytics)
+
+- สามารถเรียกดูและส่งออก (Export) รายงานสรุปภาพรวมของร้านค้าในรูปแบบกราฟหรือตาราง เช่น รายงานรายได้ประจำเดือน, สินค้าที่ขายดีที่สุด 5 อันดับแรก (Top Sellers) และสถิติการสมัครสมาชิกใหม่ของลูกค้า
+
+- ระบบสำรองข้อมูลและตรวจสอบการทำงาน (System Logs & Data Maintenance)
+
+- สามารถตรวจสอบประวัติการทำงาน (Audit Logs) ของพนักงานในระบบเพื่อความโปร่งใส และจัดการล้างข้อมูลชั่วคราว (Clear Cache/Reset Data) ในระบบ LocalStorage/Server ในกรณีที่ต้องการรีเซ็ตระบบเพื่อทดสอบ (สอดคล้องกับแผน SDLC สัปดาห์ที่ 4)
+
 
 ## 6) แนวทางการพัฒนาตาม SDLC (Brief Description)
 | ขั้นตอน (Phase) | รายละเอียดโดยย่อ (Brief Description) |
@@ -199,7 +329,70 @@
 | สัปดาห์ที่ 3 (พัฒนา Backend และฐานข้อมูล) | พัฒนาระบบ API, ระบบ Login, จัดการฐานข้อมูลสินค้า และเชื่อมต่อหน้าบ้านเข้ากับหลังบ้าน |
 | สัปดาห์ที่ 4 (ทดสอบระบบและนำเสนอผลงาน) | ทำการทดสอบระบบแบบ Manual เพื่อตรวจเช็คความถูกต้อง แก้ไขจุดบกพร่อง |`;
 
+        const diagramData = `graph TD
+
+    subgraph "User Actors (ผู้ใช้งานระบบ)"
+        C["ลูกค้า (Customer)"]
+        S["พนักงาน (Staff)"]
+        A["ผู้ดูแลระบบ (Administrator)"]
+    end
+
+    subgraph "Frontend Layer (React)"
+        UIPub["หน้าเว็บร้านค้าออนไลน์ (Public UI)"]
+        UIPriv["ระบบจัดการหลังบ้าน (Back-Office UI)"]
+    end
+
+    subgraph "Backend Layer (Node.js API Server)"
+        API["API Gateway / Router"]
+        
+        subgraph "Core Services & Logic"
+            Auth["System Authentication"]
+            Prod["Product Management"]
+            Order["Order & Payment"]
+            UserServ["User & Member"]
+            Ticket["Claim & Ticket"]
+            Mark["Marketing & Promo"]
+            Report["Reporting"]
+            SysLog["System Logs"]
+        end
+    end
+
+    subgraph "Data Layer"
+        DB[("LocalStorage (Browser Database)")]
+    end
+
+    %% --- ด้านการเข้าใช้งานหน้าบ้าน/หลังบ้าน ---
+    C --> UIPub
+    S --> UIPriv
+    A --> UIPriv
+
+    %% --- หน้าจอส่งต่อ Request ไปที่ API ---
+    UIPub -->|HTTP Request| API
+    UIPriv -->|HTTP Request| API
+
+    %% --- API กระจายงานไปยัง Service ย่อยๆ ---
+    API --> Auth
+    API --> Prod
+    API --> Order
+    API --> UserServ
+    API --> Ticket
+    API --> Mark
+    API --> Report
+    API --> SysLog
+
+    %% --- ทุก Service เชื่อมเข้ากับ Database กลาง ---
+    Auth --> DB
+    Prod --> DB
+    Order --> DB
+    UserServ --> DB
+    Ticket --> DB
+    Mark --> DB
+    Report --> DB
+    SysLog --> DB`;
+
         document.getElementById("markdown-output").innerHTML = marked.parse(markdownData);
+        document.getElementById("diagram-output").textContent = diagramData;
+        mermaid.run({ nodes: [document.getElementById("diagram-output")] });
     </script>
 </body>
 
