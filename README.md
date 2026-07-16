@@ -66,9 +66,9 @@ Git Page https://saranyu311243.github.io/PrimePC/
 | 7. Maintenance | ตรวจทานระบบหลังจากนำไปติดตั้ง ตรวจสอบ Feedback และสรุปผลโครงงาน |
 
 ## 7) เครื่องมือและเทคโนโลยีที่ใช้
-- **Frontend:** React
-- **Backend:** Node.js
-- **Database:** Supabase
+- **Frontend:** Vite React Javascript TailwindCSS
+- **Backend:** Node.js Express.js Cors PrismaORM
+- **Database:** PostgresSQL Supabase  
 
 ## 8) ประเภทการทดสอบ (Test Types)
 - User Acceptance Testing (UAT)
