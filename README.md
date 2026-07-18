@@ -92,7 +92,6 @@ Git Page https://saranyu311243.github.io/PrimePC/
 ## System Architecture
 
 ```mermaid
-
 graph TD
 	subgraph "User Actors (ผู้ใช้งานระบบ)"
 		C["ลูกค้า (Customer)"]
@@ -146,5 +145,4 @@ graph TD
 	Report --> ORM
 	SysLog --> ORM
 	ORM --> DB
-
 ```
