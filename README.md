@@ -92,22 +92,21 @@ Git Page https://saranyu311243.github.io/PrimePC/
 ## System Architecture
 
 ```mermaid
-graph TD
 
+graph TD
 	subgraph "User Actors (ผู้ใช้งานระบบ)"
 		C["ลูกค้า (Customer)"]
 		S["พนักงาน (Staff)"]
 		A["ผู้ดูแลระบบ (Administrator)"]
 	end
 
-	subgraph "Frontend Layer (React)"
+	subgraph "Frontend Layer (Vite + React + Tailwind)"
 		UIPub["หน้าเว็บร้านค้าออนไลน์ (Public UI)"]
 		UIPriv["ระบบจัดการหลังบ้าน (Back-Office UI)"]
 	end
 
-	subgraph "Backend Layer (Node.js API Server)"
+	subgraph "Backend Layer (Node.js + Express + Cors)"
 		API["API Gateway / Router"]
-
 		subgraph "Core Services & Logic"
 			Auth["System Authentication"]
 			Prod["Product Management"]
@@ -121,16 +120,15 @@ graph TD
 	end
 
 	subgraph "Data Layer"
-		DB[("LocalStorage (Browser Database)")]
+		ORM["Prisma ORM"]
+		DB[("PostgreSQL (Supabase)")]
 	end
 
 	C --> UIPub
 	S --> UIPriv
 	A --> UIPriv
-
 	UIPub -->|HTTP Request| API
 	UIPriv -->|HTTP Request| API
-
 	API --> Auth
 	API --> Prod
 	API --> Order
@@ -139,13 +137,14 @@ graph TD
 	API --> Mark
 	API --> Report
 	API --> SysLog
+	Auth --> ORM
+	Prod --> ORM
+	Order --> ORM
+	UserServ --> ORM
+	Ticket --> ORM
+	Mark --> ORM
+	Report --> ORM
+	SysLog --> ORM
+	ORM --> DB
 
-	Auth --> DB
-	Prod --> DB
-	Order --> DB
-	UserServ --> DB
-	Ticket --> DB
-	Mark --> DB
-	Report --> DB
-	SysLog --> DB
 ```
