@@ -1,7 +1,9 @@
 # PrimePC: ร้านค้าออนไลน์สำหรับจัดจำหน่ายอุปกรณ์คอมพิวเตอร์
 
-Git Page https://saranyu311243.github.io/PrimePC/
-หน้าเว็บจริง https://project-prime-pc.vercel.app/
+Git Page: https://saranyu311243.github.io/PrimePC/
+หน้าเว็บจริง: https://project-prime-pc.vercel.app/
+Backend: https://primepc-backend.onrender.com/
+Api : https://primepc-backend.onrender.com/api-docs/
 
 ## 1) ข้อมูลกลุ่ม (Group information)
 - **ชื่อกลุ่ม:** ดรีมหลับ
