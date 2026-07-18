@@ -1,8 +1,8 @@
 # PrimePC: ร้านค้าออนไลน์สำหรับจัดจำหน่ายอุปกรณ์คอมพิวเตอร์
 
-Git Page: https://saranyu311243.github.io/PrimePC/
-หน้าเว็บจริง: https://project-prime-pc.vercel.app/
-Backend: https://primepc-backend.onrender.com/
+Git Page: https://saranyu311243.github.io/PrimePC/ <br>
+หน้าเว็บจริง: https://project-prime-pc.vercel.app/<br>
+Backend: https://primepc-backend.onrender.com/<br>
 Api : https://primepc-backend.onrender.com/api-docs/
 
 ## 1) ข้อมูลกลุ่ม (Group information)
